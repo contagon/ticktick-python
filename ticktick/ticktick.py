@@ -87,7 +87,7 @@ class TickTick(object):
     def fetch_uncompleted(self):
         r = self._session.get(BATCH_CHECK_URL)
         data = r.json()
-
+        self.list_groups = [Dict(item) for item in data['projectGroups']]
         self.lists = [Dict(item) for item in data['projectProfiles']]
         self.list_lookup = {item.id:item for item in self.lists}
         self.inbox = Dict({
